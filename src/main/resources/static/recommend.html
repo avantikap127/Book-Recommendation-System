@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Recommend Book</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Recommend</h1>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/add-book.html">Add Book</a>
+        <a href="/view-books.html">View Books</a>
+      </nav>
+    </div>
+
+    <div class="form-row">
+  <label>Author</label>
+  <input id="author" placeholder="Enter author name">
+</div>
+
+<div class="form-row">
+  <label>Genre</label>
+  <input id="genre" placeholder="Enter genre">
+</div>
+
+<div class="form-row">
+  <label>Min Rating</label>
+  <input id="rating" type="number" min="1" max="5" value="4">
+</div>
+
+    <div style="margin-top:10px;">
+      <button class="btn" onclick="getRec()">Get Recommendation</button>
+    </div>
+
+    <div id="result" style="margin-top:18px;"></div>
+
+    <div class="footer small">Uses <code>/api/books/recommend</code></div>
+  </div>
+
+<script>
+async function getRec() {
+  const author = document.getElementById('author').value.trim();
+  const genre = document.getElementById('genre').value.trim();
+  const rating = document.getElementById('rating').value.trim();
+
+  const q = `?author=${encodeURIComponent(author)}&genre=${encodeURIComponent(genre)}&rating=${rating}`;
+
+  const r = document.getElementById('result');
+  r.innerHTML = '<div class="center small">Loading...</div>';
+
+  try {
+    const res = await fetch('/api/books/recommend' + q);
+    const b = await res.json();
+
+    r.innerHTML =
+      `<div style="padding:12px;background:#f0fbff;border-radius:8px;">
+         <strong>${b.title}</strong>
+         <div class="small">${b.author} — ${b.genre}</div>
+         <div style="margin-top:8px">Rating: ${b.rating}/5</div>
+       </div>`;
+  }
+  catch(e) {
+    r.innerHTML = '<div class="center">No recommendation</div>';
+  }
+}
+</script>
+</body>
+</html>

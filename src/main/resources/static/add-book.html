@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Add Book</h1>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/view-books.html">View Books</a>
+      </nav>
+    </div>
+
+    <div id="msg" class="center small"></div>
+
+    <div>
+      <div class="form-row">
+        <label>Title</label>
+        <input id="title" placeholder="Book title">
+      </div>
+      <div class="form-row">
+        <label>Author</label>
+        <input id="author" placeholder="Author name">
+      </div>
+      <div class="form-row">
+        <label>Genre</label>
+        <input id="genre" placeholder="Genre">
+      </div>
+      <div class="form-row">
+        <label>Rating</label>
+        <input id="rating" type="number" min="1" max="5" value="4">
+      </div>
+      <div style="margin-top:10px;">
+        <button class="btn" onclick="submitBook()">Submit</button>
+      </div>
+    </div>
+
+    <div class="footer">Simple form that sends JSON to <code>/api/books</code></div>
+  </div>
+
+<script>
+async function submitBook(){
+  const title = document.getElementById('title').value.trim();
+  const author = document.getElementById('author').value.trim();
+  const genre = document.getElementById('genre').value.trim();
+  const rating = parseInt(document.getElementById('rating').value);
+
+  if(!title || !author){ document.getElementById('msg').innerText = 'Please enter title and author'; return; }
+
+  const body = { title, author, genre, rating };
+  try{
+    const res = await fetch('/api/books', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){ const t = await res.text(); throw new Error(t || 'Request failed'); }
+    const data = await res.json();
+    document.getElementById('msg').innerText = 'Book added: ' + data.title;
+    // clear fields
+    document.getElementById('title').value=''; document.getElementById('author').value=''; document.getElementById('genre').value=''; document.getElementById('rating').value=4;
+  }catch(e){
+    document.getElementById('msg').innerText = 'Error: ' + e.message;
+  }
+}
+</script>
+</body>
+</html>

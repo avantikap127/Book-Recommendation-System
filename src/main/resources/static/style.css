@@ -1,0 +1,64 @@
+/* Light Blue Theme - Simple & Clean */
+:root{
+  --bg: #f5fbff;
+  --card: #ffffff;
+  --primary: #1e88e5;
+  --accent: #e3f2fd;
+  --text: #213547;
+  --muted: #6b7c93;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin:0;
+  padding:0;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:20px;
+  background:var(--card);
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(30,136,229,0.08);
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+h1{ margin:0; font-size:22px; color:var(--primary); }
+
+nav a{
+  text-decoration:none;
+  color:var(--primary);
+  margin-left:12px;
+  font-weight:600;
+}
+
+.form-row{ margin-bottom:12px; display:flex; gap:10px; }
+.form-row label{ width:80px; font-size:14px; color:var(--muted); }
+.form-row input, .form-row select{ flex:1; padding:8px 10px; border-radius:6px; border:1px solid #dbeaf9; background:var(--accent); }
+
+.btn{
+  background:var(--primary);
+  color:white;
+  padding:10px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.table{ width:100%; border-collapse:collapse; margin-top:14px; }
+.table th, .table td{ padding:10px 8px; border-bottom:1px solid #eef6ff; text-align:left; font-size:14px; }
+.table th{ background:linear-gradient(90deg, rgba(30,136,229,0.06), transparent); color:var(--muted); }
+
+.center{ text-align:center; padding:20px; color:var(--muted); }
+.small{ font-size:13px; color:var(--muted); }
+.footer{ margin-top:18px; font-size:13px; color:var(--muted); text-align:center; }

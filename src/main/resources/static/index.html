@@ -1,0 +1,31 @@
+<!---cd "BookRecommendation"   then   mvn spring-boot:run   then go to http://localhost:8080/index.html
+-->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Book Recommendation - Home</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Book Recommendation</h1>
+      <nav>
+        <a href="/add-book.html">Add Book</a>
+        <a href="/view-books.html">View Books</a>
+        <a href="/recommend.html">Recommend</a>
+      </nav>
+    </div>
+
+    <p class="small">A tiny Book Recommendation demo integrated with Spring Boot backend. Use the menu to add and view books.</p>
+
+    <div style="margin-top:18px;">
+      <a class="btn" href="/add-book.html">Add a Book</a>
+      <a class="btn" style="background:#4caf50;margin-left:10px" href="/view-books.html">View all Books</a>
+    </div>
+
+    <div class="footer">Runs with embedded Spring Boot. H2 console available at <code>/h2-console</code>.</div>
+  </div>
+</body>
+</html>

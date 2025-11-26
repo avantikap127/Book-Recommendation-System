@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>View Books</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>All Books</h1>
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/add-book.html">Add Book</a>
+      </nav>
+    </div>
+
+    <div id="content"></div>
+
+    <div class="footer">Data loaded from <code>/api/books</code></div>
+  </div>
+
+<script>
+async function loadBooks(){
+  const c = document.getElementById('content');
+  c.innerHTML = '<div class="center small">Loading...</div>';
+  try{
+    const res = await fetch('/api/books');
+    if(!res.ok){ c.innerHTML = '<div class="center">Failed to load</div>'; return; }
+    const list = await res.json();
+    if(list.length===0){ c.innerHTML = '<div class="center">No books yet. Add one first.</div>'; return; }
+    let html = '<table class="table"><tr><th>ID</th><th>Title</th><th>Author</th><th>Genre</th><th>Rating</th></tr>';
+    for(const b of list){
+      html += `<tr><td>${b.id}</td><td>${escapeHtml(b.title)}</td><td>${escapeHtml(b.author)}</td><td>${escapeHtml(b.genre)}</td><td>${b.rating}</td></tr>`;
+    }
+    html += '</table>';
+    c.innerHTML = html;
+  }catch(e){
+    c.innerHTML = '<div class="center">Error loading data</div>';
+  }
+}
+
+function escapeHtml(s){ if(!s) return ''; return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+window.onload = loadBooks;
+</script>
+</body>
+</html>
