@@ -1,16 +1,99 @@
-# BookRecommendation
+# Book Recommendation Management
+A lightweight Book Recommendation web application built using Spring Boot, Thymeleaf-like static HTML, Spring Data JPA, and H2/MySQL.
+Users can add books, view available books, and get simple recommendations based on book genres.
 
-Book Recommendation System - demonstrates Spring Boot, JPA, JDBC, REST, file export, exceptions.
+This project follows a clean MVC structure and includes custom exception handling, DAO/JPA repository, and a minimal frontend UI.
 
-Run:
-```
+---
+
+#🌟 Features
+**✅ Book Management**
+
+Add new books
+
+View all books
+
+Search books (by genre/title)
+
+Delete or update (via backend APIs)
+
+**🎯 Recommendation Engine (Rule-Based)**
+
+Recommends books based on:
+
+Genre matching
+
+Basic filtering logic (from BookService)
+
+User-selected genre on the UI page
+
+**🖥 Simple UI**
+
+Static HTML pages served from /static:
+
+index.html – Home page
+
+view-books.html – View all books
+
+recommend.html – Select genre → recommended books
+
+style.css – Basic styling
+
+---
+
+#Tech Stack
+| Layer              | Technology                        |
+| ------------------ | --------------------------------- |
+| Backend            | Spring Boot                       |
+| ORM                | Spring Data JPA                   |
+| Database           | H2 / MySQL                        |
+| Build Tool         | Maven                             |
+| UI                 | HTML, CSS (served from `/static`) |
+| Exception Handling | Custom GlobalExceptionHandler     |
+
+---
+
+#Project Structure
+BookRecommendation_With_UI/
+ ├── BookRecommendation/
+ │   ├── src/main/java/com/example/bookrec/
+ │   │     ├── controller/        # BookController
+ │   │     ├── exception/         # Custom exceptions
+ │   │     ├── jdbc/              # JDBC DAO (if used)
+ │   │     ├── model/             # Book.java (Entity)
+ │   │     ├── repository/        # JPA repository
+ │   │     ├── service/           # Business logic
+ │   │     └── BookRecommendationApplication.java
+ │   │
+ │   ├── src/main/resources/
+ │   │     ├── static/            # index.html, recommend.html, view-books.html, style.css
+ │   │     └── application.properties
+ │   │
+ │   ├── pom.xml
+ │   └── README.md (generated)
+ └── src/main/resources/static/index.html (duplicate)
+
+---
+
+#⚙️ Setup & Installation
+**1️⃣ Clone the repository**
+git clone https://github.com/your-username/BookRecommendation_With_UI.git
+cd BookRecommendation_With_UI/BookRecommendation
+
+**2️⃣ Configure Database**
+
+H2 (default)
+spring.datasource.url=jdbc:h2:mem:bookdb
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+
+**3️⃣ Run the project**
 mvn spring-boot:run
-```
 
-API examples:
-- POST /api/books
-- GET /api/books
-- GET /api/books/recommend
-- GET /api/books/export  -> downloads reading-list.txt
+---
 
-H2 console: /h2-console (jdbc:h2:mem:testdb)
+#Testing
+Use Postman or browser:
+GET http://localhost:8080/books
+
+
