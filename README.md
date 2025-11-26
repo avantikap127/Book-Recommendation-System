@@ -53,29 +53,8 @@ style.css – Basic styling
 
 ---
 
-#Project Structure
-BookRecommendation_With_UI/
- ├── BookRecommendation/
- │   ├── src/main/java/com/example/bookrec/
- │   │     ├── controller/        # BookController
- │   │     ├── exception/         # Custom exceptions
- │   │     ├── jdbc/              # JDBC DAO (if used)
- │   │     ├── model/             # Book.java (Entity)
- │   │     ├── repository/        # JPA repository
- │   │     ├── service/           # Business logic
- │   │     └── BookRecommendationApplication.java
- │   │
- │   ├── src/main/resources/
- │   │     ├── static/            # index.html, recommend.html, view-books.html, style.css
- │   │     └── application.properties
- │   │
- │   ├── pom.xml
- │   └── README.md (generated)
- └── src/main/resources/static/index.html (duplicate)
-
----
-
 #⚙️ Setup & Installation
+
 **1️⃣ Clone the repository**
 git clone https://github.com/your-username/BookRecommendation_With_UI.git
 cd BookRecommendation_With_UI/BookRecommendation
